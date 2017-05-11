@@ -1,0 +1,19 @@
+{
+  "name": "storyoverflow",
+  "version": "1.0.0",
+  "description": "let's get rid your writer's block!",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.17.1",
+    "ejs": "^2.5.6",
+    "express": "^4.15.2",
+    "oauth": "^0.9.15",
+    "pg": "^6.1.5",
+    "sequelize": "^3.30.4"
+  }
+}
