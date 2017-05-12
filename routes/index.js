@@ -1,6 +1,16 @@
 const express = require('express');
 const router = express.Router();
 const OAuth = require('oauth');
+const db = require('../models')
+
+router.get('/', (req, res) => {
+  db.Story.findAll()
+    .then(stories=>{
+      res.render('index', {user: req.session.user, story: stories, message: '', error: 'No Story Yet' });
+    })
+})
+
+
 
 var oauth = new OAuth.OAuth(
   'https://api.twitter.com/oauth/request_token',
@@ -13,9 +23,7 @@ var oauth = new OAuth.OAuth(
 );
 
 
-router.get('/', (req, res) => {
-  res.render('index');
-})
+
 
 router.post('/story', (req, res) => {
   oauth.post(

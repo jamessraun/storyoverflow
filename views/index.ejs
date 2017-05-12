@@ -2,14 +2,26 @@
 <html>
 
 <head>
+  <title>StoryOverFlow</title>
   <% include ./partials/head %>
 </head>
 
 <body class="container">
   <% include ./partials/navbar %>
-
-
-    <p>test home</p>
+  <% if(!story){
+    <%= error %>
+  } %>
+  <% if(story.length > 0){ 
+    story.forEach(stories=>{
+  %>
+      <table>
+        <thead><%stories[i].title%></thead>
+        <tbody>
+          <%= stories[i].premise %>
+        </tbody>
+      </table>
+  <% })    
+   } %>
 
 </body>
 

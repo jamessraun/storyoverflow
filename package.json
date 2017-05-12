@@ -4,7 +4,7 @@
   "description": "let's get rid your writer's block!",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "nodemon ./bin/www"
   },
   "author": "",
   "license": "ISC",
