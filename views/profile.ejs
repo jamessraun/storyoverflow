@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title><%= title %> Profile</title>
+    <a href="/">Home</a>
+  </head>
+  <body>        
+    <h1><%= user.name %> Profile</h1><br><a href="/user/edit/<%= user.id %>"> Edit Profile</a><br>
+    <h3> Username </h3><p><%= user.name %></p><br>
+    <h3> Password </h3><p><%= password %></p><br>
+    <h3> Phone </h3><p><%= user.phone %></p><br>
+    <h3> Email </h3><p><%= user.email %></p><br> 
+  </body>
+</html>

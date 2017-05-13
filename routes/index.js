@@ -8,10 +8,13 @@ var router = express.Router();
 
 
 router.get('/', (req, res, next) => {
-
-  res.render('index')
-
+  db.User.findAll()
+  .then(user =>{
+    res.render('index', {user: user.id})
+  })
+  
 })
+
 
 
 router.get('/signup', (req, res, next) => {
