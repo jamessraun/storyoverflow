@@ -1,33 +1,21 @@
-var express = require('express');
-var bodyParser =  require('body-parser');
-var path = require('path');
-
-
-var index = require('./routes/index');
-var users = require('./routes/users');
-
+const express = require('express');
+const index = require('./routes/index');
+const user = require('./routes/user');
+const bodyParser = require('body-parser');
+const ejs = require('ejs');
 var app = express();
 
-// view engine setup
-app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
-
-// parse application/x-www-form-urlencoded
-app.use(bodyParser.urlencoded({ extended: false }))
-
-// parse application/json
-app.use(bodyParser.json())
-
-// app.use(function (req, res) {
-//   res.setHeader('Content-Type', 'text/plain')
-//   res.write('you posted:\n')
-//   res.end(JSON.stringify(req.body, null, 2))
-// })
-
-//oatuh instanciate
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(express.static('./public'));
 
 
 app.use('/',index);
-app.use('/users', users);
+app.use('/user',user);
 
-app.listen(3000);
+
+
+
+
+app.listen(3000)
