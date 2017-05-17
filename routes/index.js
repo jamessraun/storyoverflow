@@ -32,7 +32,7 @@ router.post('/signup', (req, res, next) => {
     name: req.body.name
   })
     .then(user => {
-      res.json(user);
+      res.redirect('/');
     })
 })
 
