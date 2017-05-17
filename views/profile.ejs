@@ -1,15 +1,42 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8">
-    <title><%= title %> Profile</title>
-    <a href="/">Home</a>
-  </head>
-  <body>        
-    <h1><%= user.name %> Profile</h1><br><a href="/user/edit/<%= user.id %>"> Edit Profile</a><br>
-    <h3> Username </h3><p><%= user.name %></p><br>
-    <h3> Password </h3><p><%= password %></p><br>
-    <h3> Phone </h3><p><%= user.phone %></p><br>
-    <h3> Email </h3><p><%= user.email %></p><br> 
-  </body>
+
+<head>
+  <% include ./partials/head %>
+</head>
+
+
+<body>
+  <nav class="navbar navbar-toggleable-md navbar-light bg-faded">
+    <% include ./partials/nav %>
+  </nav>
+
+
+  <div class="col col-lg-5">
+    <div style="margin-top: 30px">
+      <h1>Profile</h1>
+    </div>
+    <div class="form-group row" style="margin-top: 30px">
+      <label for="example-text-input" class="col-2 col-form-label">Username</label>
+      <div class="col-10">
+        <input class="form-control" type="text" value="<%= user.name %>" id="example-text-input">
+      </div>
+    </div>
+    <div class="form-group row">
+      <label for="example-tel-input" class="col-2 col-form-label">Phone</label>
+      <div class="col-10">
+        <input class="form-control" type="tel" value="<%= user.phone %>" id="example-tel-input">
+      </div>
+    </div>
+    <div class="form-group row">
+      <label for="example-email-input" class="col-2 col-form-label">Email</label>
+      <div class="col-10">
+        <input class="form-control" type="email" value="<%= user.email %>" id="example-email-input">
+      </div>
+    </div>
+  </div>
+
+
+</body>
+
 </html>
