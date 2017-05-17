@@ -2,15 +2,15 @@
 
 module.exports = {
   up: function (queryInterface, Sequelize) {
-    
+
     return queryInterface.bulkInsert('Stories',[{
       title: 'Collisio',
-      premise: 'a war between 2 dimension, i need some help on what going to happen next!',
+      premise: 'a war between 2 dimension',
       story: `Chapter 3
 URU FOREST, a forest of the four giants
 NORTH, Arcas
- 
- 
+
+
 Vrath dan Cakra berlari menyusuri kedalaman hutan berkabut tersebut. Pohon - pohon dan ranting - ranting besar yang menghalangi mereka dilompati dengan gesit oleh kedua anak ini. Namun Vrath dan Cakra mulai merasa letih di tengah pelariannya. Hujanpun mulai turun membasahi seisi hutan Uru.
 "I cant take it anymore Vrath, we should stop" ujar Cakra sambil berlari
 Tiba - tiba Vrath melihat sebuah gua kecil seukuran badan mereka dengan beberapa rumput menjalar di sekitar mulut goa tersebut.
@@ -130,12 +130,16 @@ Taruspun berhasil mencabut tanduknya dari pohon tumbang tersebut dan langsung me
 Vrath berpaling ke belakang lalu berteriak "OKAY!!" sambil terus berjalan menjauh
 "WHAT!!! OKAY!!!???? IM JUST TRYING TO DRAMATIZED IT, COME BACK HERE YOU BASTARD!!!"
 Namun Taruspun sudah terlalu dekat dengan Cakra "i promise if im dead here my soul will haunt you forever Vrath" gumam Cakra yang sudah pasrah`,
+question:'i need some help on what going to happen next!',
+user_id: 1,
 createdAt: new Date(),
 updatedAt: new Date()
     },{
       title: 'a random psychological short movie',
-      premise: 'im abt to make a short movie for my school project, any idea of what should i make?',
+      premise: 'im abt to make a short movie for my school project',
       story: `im thinking about making something around a girl that has a psychological disorder`,
+      question:'any idea of what should i make?',
+      user_id: 2,
       createdAt: new Date(),
       updatedAt: new Date()
     }],{})
