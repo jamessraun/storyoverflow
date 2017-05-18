@@ -8,7 +8,27 @@
 
 <body>
   <nav class="navbar navbar-toggleable-md navbar-light bg-faded">
-    <% include ./partials/nav %>
+    <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+    </button>
+    <a class="navbar-brand" href="../"><img src="/images/storysymbol.png" width="60" height="60" class="d-inline-block align-top" alt=""></a>
+
+        <ul class="navbar-nav">
+          <li class="nav-item dropdown active">
+            <a class="nav-link dropdown-toggle" href="http://example.com" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Account
+            </a>
+
+            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+              <a class="dropdown-item" href="../profile/<%-user%>">Profile</a>
+              <a class="dropdown-item" href="../mystories/<%-user%>">My Stories</a>
+              <a class="dropdown-item" href="../logout/<%-user%>">Logout</a>
+            </div>
+          </li>
+          <li class="nav-item active">
+            <a class="nav-link" href="../<%= user %>">Stories <span class="sr-only">(current)</span></a>
+          </li>
+        </ul>
   </nav>
 
 
@@ -16,24 +36,27 @@
     <div style="margin-top: 30px">
       <h1>Profile</h1>
     </div>
-    <div class="form-group row" style="margin-top: 30px">
-      <label for="example-text-input" class="col-2 col-form-label">Username</label>
-      <div class="col-10">
-        <input class="form-control" type="text" value="<%= user.name %>" id="example-text-input">
+    <form action="/user/update/<%= user.id %>" method="post">
+      <div class="form-group row" style="margin-top: 30px">
+        <label for="example-text-input" class="col-2 col-form-label">Name</label>
+        <div class="col-10">
+          <input class="form-control" name ="name" type="text" value="<%= user.name %>" id="example-text-input">
+        </div>
       </div>
-    </div>
-    <div class="form-group row">
-      <label for="example-tel-input" class="col-2 col-form-label">Phone</label>
-      <div class="col-10">
-        <input class="form-control" type="tel" value="<%= user.phone %>" id="example-tel-input">
+      <div class="form-group row">
+        <label for="example-tel-input" class="col-2 col-form-label">Phone</label>
+        <div class="col-10">
+          <input class="form-control" name ="phone" type="tel" value="<%= user.phone %>" id="example-tel-input">
+        </div>
       </div>
-    </div>
-    <div class="form-group row">
-      <label for="example-email-input" class="col-2 col-form-label">Email</label>
-      <div class="col-10">
-        <input class="form-control" type="email" value="<%= user.email %>" id="example-email-input">
+      <div class="form-group row">
+        <label for="example-email-input" class="col-2 col-form-label">Email</label>
+        <div class="col-10">
+          <input class="form-control" name ="email" type="email" value="<%= user.email %>" id="example-email-input">
+        </div>
       </div>
-    </div>
+      <button type="submit">Edit</button>
+    </form>
   </div>
 
 

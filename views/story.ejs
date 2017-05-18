@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <% include ./partials/head %>
+</head>
+
+<body>
+  <nav class="navbar navbar-toggleable-md navbar-light bg-faded">
+    <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+    </button>
+    <a class="navbar-brand" href="../"><img src="/images/storysymbol.png" width="60" height="60" class="d-inline-block align-top" alt=""></a>
+
+        <ul class="navbar-nav">
+          <li class="nav-item active">
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#signup">
+              Sign Up
+            </button>
+
+            <!-- Modal -->
+            <div class="modal fade" id="signup" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+              <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Sign Up</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <div class="modal-body">
+                    <form action="/signup" method="Post">
+                      <div class="form-group">
+                        <input type="text" class="form-control" name="name"  placeholder="Name">
+                      </div>
+                      <div class="form-group">
+                        <input type="text" class="form-control" name="username"  placeholder="Username">
+                      </div>
+                      <div class="form-group">
+                        <input type="text" class="form-control" name="password"  placeholder="Password">
+                      </div>
+                      <div class="form-group">
+                        <input type="text" class="form-control" name="email"  placeholder="Email">
+                      </div>
+                      <div class="form-group">
+                        <input type="text" class="form-control" name="phone"  placeholder="Phone">
+                      </div>
+                      <div class="modal-footer">
+                        <button type="submit" class="btn btn-primary">Sign Up!</button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                      </div>
+                    </form>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+
+          </li>
+          <li class="nav-item active">
+            <!-- Button trigger modal -->
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#login">
+              Login
+            </button>
+
+            <!-- Modal -->
+            <div class="modal fade" id="login" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+              <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">LOGIN</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <div class="modal-body">
+                    <form action="/login" method="Post">
+                      <div class="form-group">
+                        <input type="text" class="form-control" name="username"  placeholder="Username">
+                      </div>
+                      <div class="form-group">
+                        <input type="password" class="form-control" name="password" placeholder="Password">
+                      </div>
+                      <div class="modal-footer">
+                        <button type="submit" class="btn btn-primary">Login</button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                      </div>
+                    </form>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+
+          </li>
+        </ul>
+  </nav>
+
+  <div class="container">
+    <div class="col-12" style=" margin-bottom: 30px">
+      <div class="card text-center">
+    <div class="card-header">
+          <b><%-story.user_id%></b>
+        </div></a>
+        <div class="card-block">
+          <h4 class="card-title"><%-story.title%></h4>
+          <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+          <p>
+            <a href="#">
+              <%-story.question%>
+            </a>
+          </p>
+
+          <button class="btn btn-primary" data-toggle="modal" data-target=".bd-example-modal-lg">Read Story</button>
+        </div>
+        <div class="card-footer text-muted">
+          <%let date = new Date();
+          let day = date.getDate();
+          let dayStory=story.createdAt.getDate()
+          let res = day-dayStory;
+          let a='';
+          if(res===0)
+            a='Today'
+          else if(res===1)
+            a='a Day Ago'
+          else a=`${res} Day Ago`
+        %>
+            <%-a%>
+        </div>
+      </div>
+      <!-- Large modal -->
+      <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+          <div class="modal-content" align="center">
+            <h4><%-story.title%></h4>
+            <p>
+              <%-story.story%>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  
+
+</body>
+
+</html>

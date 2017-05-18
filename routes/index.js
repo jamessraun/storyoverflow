@@ -32,7 +32,7 @@ router.post('/signup', (req, res, next) => {
     name: req.body.name
   })
     .then(user => {
-      res.json(user);
+      res.redirect('/');
     })
 })
 
@@ -73,6 +73,16 @@ router.post('/login', (req, res, next) => {
 
 })
 
+router.get('/story/:story_id',(req,res,next)=>{
+  db.Story.findOne({
+    where:{
+      id: req.params.story_id
+    }
+  })
+  .then(story=>{
+      res.render('story',{story:story})
+  })
+})
 
 
 

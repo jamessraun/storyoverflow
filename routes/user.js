@@ -58,8 +58,6 @@ router.get('/edit/:id', (req, res, send) => {
 router.post('/update/:id', function(req, res, next) {
   db.User.update({
       name: req.body.name,
-      username: req.body.username,
-      password: req.body.password,
       email: req.body.email,
       phone: req.body.phone
     }, {
@@ -68,35 +66,19 @@ router.post('/update/:id', function(req, res, next) {
       }
     })
     .then(function() {
-      db.User.findOne({
-          where: {
-            id: req.params.id
-          }
-        })
-        .then(user => {
-          res.redirect(`/user/profile/${user.id}`)
-        })
+    res.redirect(`/user/profile/${req.params.id}`)
     })
 })
 
 
 router.get('/mystories/:id', (req, res, next) => {
-
   db.Story.findAll({
       where: {
-        user_id: req.params.id
+        user_id: +req.params.id
       }
     })
     .then(stories => {
-      let token = helper[1].token
-      db.Story.getAllData(stories => {
-        jwt.verify(token, 'secret', function(err, decoded) {
-          res.render('mystory', {
-            stories: stories,
-            user: decoded
-          })
-        })
-      })
+      res.render('mystory', {stories:stories,user: req.params.id})
     })
 })
 
@@ -125,5 +107,46 @@ router.get('/logout/:id',(req,res,next) => {
       res.redirect('/')
     })
 })
+
+router.get('/:id/edit/mystory/:story_id',(req,res,next)=>{
+  db.Story.findOne({
+    where:{
+      id:req.params.story_id
+    }
+  })
+  .then(story=>{
+    res.render('editmystory',{story:story})
+  })
+})
+
+router.post('/:id/edit/mystory/:story_id',(req,res,next)=>{
+  db.Story.update({
+    title: req.body.title,
+    premise: req.body.premise,
+    question: req.body.question,
+    story: req.body.story
+  },{
+    where:{
+      id: req.params.story_id
+    }
+  })
+  .then(data=>{
+    console.log(req.params);
+    res.redirect(`/user/mystories/${req.params.id}`)
+  })
+})
+
+router.get('/:id/delete/mystory/:story_id',(req,res,next)=>{
+  db.Story.destroy({
+    where:{
+      id:req.params.story_id
+    }
+  })
+  .then(data=>{
+    res.redirect(`/user/mystories/${req.params.id}`)
+  })
+})
+
+
 
 module.exports = router;
