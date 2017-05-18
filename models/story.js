@@ -14,7 +14,7 @@ module.exports = function(sequelize, DataTypes) {
         Story.belongsTo(models.User,{foreignKey:'user_id'})
       },
       getAllData: function(callback){
-        sequelize.query('select s.story,s.title,s.premise,s.question,u.username,s."createdAt" from "Stories" s left join "Users" u on s.user_id=u.id order by "createdAt" DESC',{type:sequelize.QueryTypes.SELECT})
+        sequelize.query('select s.id,s.story,s.title,s.premise,s.question,u.username,s."createdAt" from "Stories" s left join "Users" u on s.user_id=u.id order by "createdAt" DESC',{type:sequelize.QueryTypes.SELECT})
         .then (stories=>{
           callback(stories)
         })

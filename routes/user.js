@@ -136,4 +136,17 @@ router.post('/:id/edit/mystory/:story_id',(req,res,next)=>{
   })
 })
 
+router.get('/:id/delete/mystory/:story_id',(req,res,next)=>{
+  db.Story.destroy({
+    where:{
+      id:req.params.story_id
+    }
+  })
+  .then(data=>{
+    res.redirect(`/user/mystories/${req.params.id}`)
+  })
+})
+
+
+
 module.exports = router;
