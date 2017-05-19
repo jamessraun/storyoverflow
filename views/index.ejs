@@ -25,7 +25,7 @@
           <div class="col-6 col-md-4" style=" margin-bottom: 30px">
             <div class="card text-center">
 
-            <%if(user.token==='false'){%>
+            <%if(!user.token){%>
           <a href="/story/<%-stories[i].id%>">
             <div class="card-header">
                 <b><%-stories[i].username%></b>

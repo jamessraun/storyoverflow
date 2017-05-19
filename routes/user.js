@@ -109,7 +109,8 @@ router.post('/mystories/add/:id', (req, res, next) => {
       title: req.body.title,
       premise: req.body.premise,
       story: req.body.story,
-      question: req.body.question
+      question: req.body.question,
+      isanswered: false
     })
     .then(story => {
       db.User.findOne({where:{id:req.params.id}})
@@ -199,6 +200,7 @@ router.get('/:id/idea/story/:story_id',(req,res,next)=>{
             }
           })
           .then(user=>{
+            console.log(story);
               db.Idea.findAll({where:{story_id:req.params.story_id},order:'"createdAt" DESC'})
               .then(ideas => {
                 db.User.findAll()

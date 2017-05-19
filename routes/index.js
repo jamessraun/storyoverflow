@@ -77,20 +77,20 @@ router.get('/story/:story_id',(req,res,next)=>{
     }
   })
   .then(story=>{
-      res.render('story',{story:story,user:{}})
+      res.render('story',{story:story})
   })
 })
 
-router.get('/:user_id/story/:story_id',(req,res,next)=>{
-  db.Story.findOne({
-    where:{
-      id: req.params.story_id
-    }
-  })
-  .then(story=>{
-      res.render('story',{story:story,user:{}})
-  })
-})
+// router.get('/:user_id/story/:story_id',(req,res,next)=>{
+//   db.Story.findOne({
+//     where:{
+//       id: req.params.story_id
+//     }
+//   })
+//   .then(story=>{
+//       res.render('story',{story:story,user:{}})
+//   })
+// })
 
 
 

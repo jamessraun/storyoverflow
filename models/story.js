@@ -5,7 +5,8 @@ module.exports = function(sequelize, DataTypes) {
     premise: DataTypes.STRING,
     story: DataTypes.TEXT,
     question:DataTypes.STRING,
-    user_id:DataTypes.INTEGER
+    user_id:DataTypes.INTEGER,
+    isanswered: DataTypes.BOOLEAN
 
   }, {
     classMethods: {

@@ -46,10 +46,13 @@
               <%-story.question%>
             </a>
           </p>
-
           <button class="btn btn-primary" data-toggle="modal" data-target=".bd-example-modal-lg">Read Story</button> <br><br>
-            <button type="button" class="btn btn-success" data-toggle="modal" data-target="#exampleModal">Add idea</button>
-        </div>
+            <% if(story.user_id !== user.id && story.isanswered === false || story.user_id !== user.id && story.isanswered === null){ %>     
+              <button type="button" class="btn btn-success" data-toggle="modal" data-target="#exampleModal">Add idea</button>
+          <%  } else{ %>
+            <div class="alert alert-success" role="alert">This Story is Answered already</div>
+        <%  } %>
+          
 
       </div>
     </div>
@@ -59,11 +62,17 @@
       <div class="row" style=" margin-bottom: 30px">
         <% if(ideas){ %>
         <%for(let i=0; i<ideas.length; i++){%>
-          <div class="col-1" style=" margin-bottom: 30px">
-              <button type="button" class="btn btn-secondary"></button> <br> <br>
-            <a href="/idea/vote/<%-ideas[i].id%>/<%-story.id%>/<%-user.id%>"><button type="button" class="btn btn-secondary">Vote</button></a>
-          </div>
-          <div class="col-11" style=" margin-bottom: 30px">
+          <% if(user.id === story.user_id){ %>
+            <div class="col-2" style=" margin-bottom: 30px">
+              <% if(story.isanswered === true){ %>
+                <div class="alert alert-success" role="alert">Answered</div>
+            <%  } else{ %>
+              <a href="/idea/<%-user.id%>/vote/<%-ideas[i].id%>/<%-story.id%>"><button type="button" class="btn btn-secondary">Choose</button></a>
+          <%  } %>
+            </div>
+        <%  } %>
+          
+          <div class="col-10" style=" margin-bottom: 30px">
             <div class="card text-center">
               <div class="card-header">
                 <%listUser.forEach(userIdea => {%>
@@ -77,21 +86,53 @@
                 <p>
                   <%-ideas[i].idea%>
                 </p>
+              
+              <% if(ideas[i].user_id === user.id){ %>
+  
+                    <a href="/idea/<%- user.id %>/delete/<%- ideas[i].id %>/<%- story.id %>"><button type="button" class="btn btn-danger" onclick="confirm('Are you sure you want to delete this idea?')">Delete</button></a>
+                    <button type="button" class="btn btn-success" data-toggle="modal" data-target="#editidea<%-ideas[i].id%>" >Edit</button>
               </div>
-              <div class="card-footer text-muted">
-                <%let date = new Date();
-                let day = date.getDate();
-                let dayStory=ideas[i].createdAt.getDate()
-                let res = day-dayStory;
-                let a='';
-                if(res===0)
-                  a='Today'
-                else if(res===1)
-                  a='a Day Ago'
-                else a=`${res} Day Ago`
-              %>
-                  <%-a%>
+              <!-- Edit idea Modal-->
+              <div class="modal fade" id="editidea<%-ideas[i].id%>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="exampleModalLabel">Idea Story</h5>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                    <div class="modal-body">
+                      <form action="/idea/<%- user.id %>/edit/<%- ideas[i].id %>/<%- story.id %>" method="post">
+                        <div class="form-group">
+                          <label for="message-text" class="form-control-label">Edit Idea</label>
+                          <textarea class="form-control" id="message-text" name="editidea"><%- ideas[i].idea %></textarea>
+                        </div>
+                        <div class="modal-footer">
+                          <button type="submit" class="btn btn-primary">Send</button>
+                          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        </div>
+                      </form>
+                    </div>
+                      <%  } %> 
+                  </div>
+                </div>
+                <div class="card-footer text-muted ">
+                  <%let date = new Date();
+                  let day = date.getDate();
+                  let dayStory=ideas[i].createdAt.getDate()
+                  let res = day-dayStory;
+                  let a='';
+                  if(res===0)
+                    a='Today'
+                  else if(res===1)
+                    a='a Day Ago'
+                  else a=`${res} Day Ago`
+                %>
+                    <%-a%>
+                </div>
               </div>
+            
             </div>
           </div>
           <%}%>
@@ -141,6 +182,8 @@
         </div>
       </div>
     </div>
+    
+
 
 
 <div class="container">
