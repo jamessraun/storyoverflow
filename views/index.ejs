@@ -16,8 +16,7 @@
       <div style="background:#41295a !important" class="jumbotron">
       <div class="container">
         <h1 class="text-white">STORYOVERFLOW</h1>
-        <p class="text-white">This is a template for a simple marketing or informational website. It includes a large callout called a jumbotron and three supporting pieces of content. Use it as a starting point to create something more unique.</p>
-        <!--<p class="text-white"><a class="btn btn-primary btn-lg" href="#" role="button">Learn more &raquo;</a></p>-->
+        <p class="text-white">let's get rid your writer's block with us.</p>
       </div>
     </div>
     <div class="jumbotron" style="background:#f0f0f0 !important" >
@@ -25,19 +24,30 @@
         <%for(let i=0; i<stories.length; i++){%>
           <div class="col-6 col-md-4" style=" margin-bottom: 30px">
             <div class="card text-center">
-          <a href="/story/<%-stories[i].id%>"><div class="card-header">
+
+            <%if(user.token==='false'){%>
+          <a href="/story/<%-stories[i].id%>">
+            <div class="card-header">
                 <b><%-stories[i].username%></b>
-              </div></a>
+            </div>
+          </a>
+            <%}else{%>
+          <a href="/user/<%-user.id%>/idea/story/<%-stories[i].id%>">
+            <div class="card-header">
+                <b><%-stories[i].username%></b>
+            </div>
+          </a>
+            <%}%>
+
               <div class="card-block">
                 <h4 class="card-title"><%-stories[i].title%></h4>
-                <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
                 <p>
-                  <a href="#">
+                  <a href="/user/<%-user.id%>/idea/story/<%-stories[i].id%>">
                     <%-stories[i].question%>
                   </a>
                 </p>
 
-                <button class="btn btn-primary" data-toggle="modal" data-target=".bd-example-modal-lg<%-i%>">Read Story</button>
+                <button class="btn btn-secondary" data-toggle="modal" data-target=".bd-example-modal-lg<%-i%>">Read Story</button>
               </div>
               <div class="card-footer text-muted">
                 <%let date = new Date();
@@ -50,7 +60,7 @@
                 else if(res===1)
                   a='a Day Ago'
                 else a=`${res} Day Ago`
-              %>
+                %>
                   <%-a%>
               </div>
             </div>
@@ -68,8 +78,20 @@
           </div>
           <%}%>
   </div>
+</div>
 
-
+  <div class="container">
+      <hr>
+        <footer class="bd-footer text-muted">
+      <div class="container">
+        <p>&copy; JS Mabok Coding 2017
+          <ul class="bd-footer-links" style="float:left">
+            <li><a href="https://github.com/jamessraun/storyoverflow" target="_blank">GitHub</a></li>
+            <li><a href="https://twitter.com/Saputrolovski" target="_blank">Twitter</a></li>
+          </ul></p>
+      </div>
+    </footer>
+  </div>
 </body>
 
 </html>

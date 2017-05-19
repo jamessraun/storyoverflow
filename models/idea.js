@@ -2,7 +2,8 @@
 module.exports = function(sequelize, DataTypes) {
   var Idea = sequelize.define('Idea', {
     idea: DataTypes.STRING,
-    user_id: DataTypes.INTEGER
+    user_id: DataTypes.INTEGER,
+    story_id: DataTypes.INTEGER
   }, {
     classMethods: {
       associate: function(models) {

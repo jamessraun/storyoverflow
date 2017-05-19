@@ -1,9 +1,10 @@
 <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
 <span class="navbar-toggler-icon"></span>
 </button>
-<a class="navbar-brand" href="../"><img src="/images/storysymbol.png" width="60" height="60" class="d-inline-block align-top" alt=""></a>
+<a class="navbar-brand" href="/user/<%-user.id%>"><img src="/images/storysymbol.png" width="60" height="60" class="d-inline-block align-top" alt=""></a>
 
-    <ul class="navbar-nav">
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
       <%if(user.id!=0){%>
       <li class="nav-item dropdown active">
         <a class="nav-link dropdown-toggle" href="http://example.com" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -11,19 +12,17 @@
         </a>
 
         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-          <a class="dropdown-item" href="../user/profile/<%-user.id%>">Profile</a>
-          <a class="dropdown-item" href="../user/mystories/<%-user.id%>">My Stories</a>
-          <a class="dropdown-item" href="../user/logout/<%-user.id%>">Logout</a>
+          <a class="dropdown-item" href="/user/profile/<%-user.id%>">Profile</a>
+          <a class="dropdown-item" href="/user/mystories/<%-user.id%>">My Stories</a>
+          <a class="dropdown-item" href="/user/logout/<%-user.id%>">Logout</a>
         </div>
-      </li>
-      <li class="nav-item active">
-        <a class="nav-link" href="../">Stories <span class="sr-only">(current)</span></a>
       </li>
       <%}else{%>
       <li class="nav-item active">
-        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#signup">
-          Sign Up
+        <button type="button" class="btn btn-link" data-toggle="modal" data-target="#login">
+          Log In
         </button>
+
 
         <!-- Modal -->
         <div class="modal fade" id="signup" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -53,7 +52,7 @@
                     <input type="text" class="form-control" name="phone"  placeholder="Phone">
                   </div>
                   <div class="modal-footer">
-                    <button type="submit" class="btn btn-primary">Sign Up!</button>
+                    <button type="submit" class="btn btn-primary">Sign Up</button>
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
                   </div>
                 </form>
@@ -66,8 +65,8 @@
       </li>
       <li class="nav-item active">
         <!-- Button trigger modal -->
-        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#login">
-          Login
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#signup">
+          Sign Up
         </button>
 
         <!-- Modal -->
@@ -75,7 +74,7 @@
           <div class="modal-dialog" role="document">
             <div class="modal-content">
               <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">LOGIN</h5>
+                <h5 class="modal-title" id="exampleModalLabel">Log In</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                   <span aria-hidden="true">&times;</span>
                 </button>
@@ -92,6 +91,11 @@
                     <button type="submit" class="btn btn-primary">Login</button>
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
                   </div>
+                  <%if(err==="err"){%>
+                    <div class="alert alert-danger" role="alert">
+                      <strong>Oh snap!</strong> Change a few things up and try submitting again.
+                    </div>
+                  <%}%>
                 </form>
               </div>
 
@@ -101,5 +105,6 @@
 
       </li>
       <%}%>
-
     </ul>
+
+  </div>

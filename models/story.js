@@ -22,6 +22,7 @@ module.exports = function(sequelize, DataTypes) {
           console.log(err);
         })
       }
+
     }
   });
   return Story;

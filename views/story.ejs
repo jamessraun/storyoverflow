@@ -80,7 +80,7 @@
                       </div>
                       <div class="form-group">
                         <input type="password" class="form-control" name="password" placeholder="Password">
-                      </div>
+                      </div>id="signup"
                       <div class="modal-footer">
                         <button type="submit" class="btn btn-primary">Login</button>
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
@@ -111,7 +111,8 @@
             </a>
           </p>
 
-          <button class="btn btn-primary" data-toggle="modal" data-target=".bd-example-modal-lg">Read Story</button>
+          <button class="btn btn-primary" data-toggle="modal" data-target=".bd-example-modal-lg">Read Story</button> <br><br>
+          <button type="button" class="btn btn-success" data-toggle="modal" data-target="#exampleModalfalse" data-whatever="@getbootstrap">Add Idea</button>
         </div>
         <div class="card-footer text-muted">
           <%let date = new Date();
@@ -128,7 +129,7 @@
             <%-a%>
         </div>
       </div>
-      <!-- Large modal -->
+      <!-- story modal -->
       <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg">
           <div class="modal-content" align="center">
@@ -140,9 +141,65 @@
         </div>
       </div>
     </div>
+
+    <!-- idea Modal-->
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Idea Story</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <form>
+              <div class="form-group">
+                <label for="message-text" class="form-control-label">Idea</label>
+                <textarea class="form-control" id="message-text"></textarea>
+              </div>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-primary">Send</button>
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
-  
-  
+
+
+
+<!-- Modal logins signin -->
+<div class="modal fade" id="exampleModalfalse" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalfalse">YOU ARE NOT A FUCKING MEMBER</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-footer">
+        <button type="button" id="needsignup" class="btn btn-primary" data-toggle="modal" data-target="#signup" onclick="needlogin()">
+          Sign Up
+        </button>
+        <button type="button" id="needlogin" class="btn btn-primary" data-toggle="modal" data-target="#login" onclick="needlogin()">
+          login
+        </button>
+        <script type="text/javascript">
+          function needlogin() {
+            document.getElementById("exampleModalfalse").style.visibility = "hidden";
+          }
+        </script>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+
 
 </body>
 
