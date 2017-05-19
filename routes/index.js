@@ -5,13 +5,14 @@ const db = require('../models');
 const helper = require('../helper/helper');
 const tokenValidation = require('../helper/tokenValidation');
 
+
 var router = express.Router();
 
  router.get('/',(req,res,next) => {
    let user={id:0};
    console.log(user);
   db.Story.getAllData(stories=>{
-    res.render('index',{stories:stories,user:user})
+    res.render('index',{stories:stories,user:user,err:''})
   })
 })
 
@@ -36,17 +37,15 @@ router.post('/signup', (req, res, next) => {
     })
 })
 
-
-router.get('/login', (req, res, next) => {
-  res.render('login')
-})
-
+// router.get('/login', (req, res, next) => {
+//   res.render('login',{err:''})
+// })
 
 router.post('/login', (req, res, next) => {
 
   db.User.findOne({
     where: {
-      username: req.body.username
+      username: req.body.username,
     }
   })
   .then (record => {
@@ -65,10 +64,8 @@ router.post('/login', (req, res, next) => {
         })
 
     } else {
-        res.json({
-            message: 'Your password is not match'
-        })
-}
+        res.render('/',{err:'err'})
+    }
   })
 
 })
@@ -80,7 +77,18 @@ router.get('/story/:story_id',(req,res,next)=>{
     }
   })
   .then(story=>{
-      res.render('story',{story:story})
+      res.render('story',{story:story,user:{}})
+  })
+})
+
+router.get('/:user_id/story/:story_id',(req,res,next)=>{
+  db.Story.findOne({
+    where:{
+      id: req.params.story_id
+    }
+  })
+  .then(story=>{
+      res.render('story',{story:story,user:{}})
   })
 })
 
