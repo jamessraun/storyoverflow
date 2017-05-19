@@ -69,12 +69,12 @@
                 <b><%-stories[i].username%></b>
               </div>
               <div class="card-block">
-                <h4 class="card-title"><%-stories[i].title%></h4>
+              <a href="/user/<%- user %>/idea/story/<%- stories[i].id %>">  <h4 class="card-title"><%-stories[i].title%></h4>  </a>
                 <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
                 <p>
-                  <a href="#">
+                  
                     <%-stories[i].question%>
-                  </a>
+                
                 </p>
                 <button class="btn btn-primary" data-toggle="modal" data-target=".bd-example-modal-lg<%-i%>">Read Story</button>
                 <a href="/user/<%- user %>/edit/mystory/<%- stories[i].id %>"><button type="button" class="btn btn-info">Edit</button></a>
