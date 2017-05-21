@@ -22,9 +22,10 @@
     <div class="jumbotron" style="background:#f0f0f0 !important" >
       <div class="row">
         <%for(let i=0; i<stories.length; i++){%>
+          
           <div class="col-6 col-md-4" style=" margin-bottom: 30px">
             <div class="card text-center">
-
+              
             <%if(!user.token || user.token === false){%>
           <a href="/story/<%-stories[i].id%>">
             <div class="card-header">
@@ -46,9 +47,12 @@
                     <%-stories[i].question%>
                   </a>
                 </p>
-
+                <p>tes<%- user.role %><p>
                 <button class="btn btn-secondary" data-toggle="modal" data-target=".bd-example-modal-lg<%-i%>">Read Story</button>
               </div>
+              <% if(user.role === "Admin"){ %>
+                <a href="/delete/<%- stories[i].id %>/<%- user.id %>">Delete</a>
+            <%  } %>
               <div class="card-footer text-muted">
                 <%let date = new Date();
                 let day = date.getDate();

@@ -4,7 +4,6 @@ const jwt = require('jsonwebtoken');
 const db = require('../models');
 const helper = require('../helper/helper');
 const tokenValidation = require('../helper/tokenValidation');
-
 var router = express.Router();
 
 // router.get('/',(req,res,next)=>{

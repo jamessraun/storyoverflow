@@ -115,18 +115,18 @@ router.post('/mystories/add/:id', (req, res, next) => {
     .then(story => {
       db.User.findOne({where:{id:req.params.id}})
       .then (user => {
-        oauth.post(
-                    `https://api.twitter.com/1.1/statuses/update.json?status=Storyoverflow Title ${req.body.title} by ${user.username}`,
-                    '92482986-txPe9Om42nzISmAgErpDxV5Zt343cFOP81h465kpR',
-                    'WbQ6LiF3l53jnVvB6E8nbg43JSEbJViPB2bamjqjzMpbx',
-                    req.body.title,
-                    'text',
-                    function(e, data) {
-                      if (e) console.error(data);
-                      console.log(story);
+        // oauth.post(
+                  //   `https://api.twitter.com/1.1/statuses/update.json?status=Storyoverflow Title ${req.body.title} by ${user.username}`,
+                  //   '92482986-txPe9Om42nzISmAgErpDxV5Zt343cFOP81h465kpR',
+                  //   'WbQ6LiF3l53jnVvB6E8nbg43JSEbJViPB2bamjqjzMpbx',
+                  //   req.body.title,
+                  //   'text',
+                  //   function(e, data) {
+                  //     if (e) console.error(data);
+                  //     console.log(story);
                       res.redirect(`/user/mystories/${story.user_id}`)
-                    }
-                  );
+                  //   }
+                  // );
       })
 
     })

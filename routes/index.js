@@ -31,6 +31,7 @@ router.post('/signup', (req, res, next) => {
     email:req.body.email,
     phone: req.body.phone,
     name: req.body.name
+//    role : "Admin"
   })
     .then(user => {
       res.redirect('/');
@@ -92,7 +93,16 @@ router.get('/story/:story_id',(req,res,next)=>{
 //   })
 // })
 
-
+router.get('/delete/:story_id/:id',(req,res,send)=>{
+  db.Story.destroy({
+    where:{
+      id: req.params.story_id
+    }
+  })
+  .then(data=>{
+    res.redirect(`/user/${req.params.id}`)
+  })
+})
 
 
 module.exports = router;
